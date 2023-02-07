@@ -1,4 +1,5 @@
-//3. fix de vang functie voor de banaan/varken.
+// to:do : 1. vang functie fixen
+//         2. pauze knop maken
 
 
 console.log("start");
