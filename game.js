@@ -1,12 +1,7 @@
 // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 // https://css-tricks.com/making-css-animations-feel-natural/
 
-// to:do: 1. zorg dat er een bar komt voor badscore (hp bar).
-//       2. maak een automatiche functie als je op spatie drukt.
-//       3. fix de vang functie voor de banaan/varken.
-//       4. maak custom art van hokke en alles zodat het een nog betere game is.
-
-
+// todo: game over toevoegen bij 10 punten
 
 console.log("start");
 let kong = document.getElementById("kong");
@@ -14,14 +9,10 @@ let banana = document.getElementById("banana");
 let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
-
-let speed = -5;
+let speed = -10;
 let badscore = 0;
 
-
-
 let direction = "";
-
 
 function init(){
     document.addEventListener('keydown', controls);
@@ -37,8 +28,8 @@ function gameEngine(){
     //  bounding box
     let kongbox = getBoundingBox(kong);
     let bananbox = getBoundingBox(banana);
-    // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
-    if(kongbox.left < bananbox.right && kongbox.right > bananbox.left ){
+
+    if(kongbox.left < bananbox.right && kongbox.right > bananbox.left){
         console.log("hebbes");
         generateBanana();
         addScore()
@@ -51,19 +42,22 @@ function gameEngine(){
         moveRight();
     }
 
-    if(speed < 650 ){
-        speed += 5
+    if(speed < 655){
         banana.style.top = speed + "px";
+        speed += 5;
     }
     else{
-        badscore++;
-        speed = 0;
+        speed = -10;
         generateBanana();
-        console.log (badscore)
+        badscore++;
+        banana.style.top = speed + "px";
     }
 
-    if (badscore == 10) {
-        window.alert ("game over")
+    if(badscore == 10){
+        alert("Game over");
+        badscore = 0;
+        score = 0;
+        scoreText.innerText = score;
     }
 }
 
@@ -79,7 +73,7 @@ function controls(event) {
     }
 
     if(key == " " || key ==""){
-        stop();
+        switchMode();
     }
 }
 
@@ -127,5 +121,6 @@ function getBoundingBox(element){
     right = rect.left + rect.width -1;
     return {"left":left, "right":right};
 }
+
 
 init();
