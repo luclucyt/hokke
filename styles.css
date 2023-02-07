@@ -30,7 +30,7 @@ body {
 
 #banana {
     position: absolute;
-    top: 650px;
+    top: 50px;
     left: 50px;
     width: 60px;
     height: 60px;
@@ -58,7 +58,7 @@ h1 {
     line-height: 50px;
 }
 
-.bounce {
+/*.bounce {
     animation-duration: 2s;
     animation-iteration-count: infinite;
  
@@ -76,3 +76,4 @@ h1 {
     64%  { transform: scale(1,1)      translateY(0); }
     100% { transform: scale(1,1)      translateY(0); }
 }
+*/

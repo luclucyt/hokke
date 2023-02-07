@@ -9,6 +9,8 @@ let banana = document.getElementById("banana");
 let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
+let speed = -10;
+let badscore = 0;
 
 function init(){
     document.addEventListener('keydown', controls);
@@ -37,6 +39,21 @@ function gameEngine(){
         console.log("hebbes");
         generateBanana();
         addScore()
+    }
+
+    if(speed < 650 ){
+        speed += 10
+        banana.style.top = speed + "px";
+    }
+    else{
+        badscore++;
+        speed = 0;
+        generateBanana();
+        console.log (badscore)
+    }
+
+    if (badscore == 10) {
+        window.alert ("game over")
     }
 }
 
