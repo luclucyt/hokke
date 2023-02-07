@@ -1,10 +1,8 @@
-// https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-// https://css-tricks.com/making-css-animations-feel-natural/
-
 //to:do: 1. zorg dat er een bar komt voor badscore (hp bar).
-//       2. maak een automatiche functie als je op spatie drukt.
+
 //       3. fix de vang functie voor de banaan/varken.
 //       4. maak custom art van hokke en alles zodat het een nog betere game is.
+
 
 console.log("start");
 let kong = document.getElementById("kong");
@@ -16,6 +14,7 @@ let speed = -10;
 let badscore = 0;
 
 let direction = "";
+let mode = "manual";
 
 function init(){
     document.addEventListener('keydown', controls);
@@ -36,6 +35,7 @@ function gameEngine(){
         console.log("hebbes");
         generateBanana();
         addScore()
+        speed = -10;
     }
 
     if(direction == "left"){
@@ -62,21 +62,47 @@ function gameEngine(){
         score = 0;
         scoreText.innerText = score;
     }
+
+    if(mode == "auto"){
+        MoveControls();
+    }
 }
 
 function controls(event) {
     let key = event.key;
-    //todo op basis van keycode , links of rechts aanroepen
-    if(key == "a" || key == "ArrowLeft" || direction == "left"){  
-        moveLeft();
-    }
+    if(mode == "manual"){
+        
+        //todo op basis van keycode , links of rechts aanroepen
+        if(key == "a" || key == "ArrowLeft" || direction == "left"){  
+            moveLeft();
+        }
 
-    if(key == "d" || key == "ArrowRight" || direction == "right"){
-        moveRight();
+        if(key == "d" || key == "ArrowRight" || direction == "right"){
+            moveRight();
+        }
+
+        if(key == "s" || key == "ArrowDown"){
+            stop();
+        }
     }
 
     if(key == " " || key ==""){
-        switchMode();
+        if(mode == "auto"){
+            mode = "manual";
+            console.log("manual");
+            stop();
+
+            score = 0;
+            scoreText.innerText = score;
+            badscore = 0;
+        } else{
+            mode = "auto";
+            console.log("auto");
+
+            score = 0;
+            scoreText.innerText = score;
+            badscore = 0;
+        }
     }
 }
 
@@ -99,7 +125,6 @@ function stop(){
     position += 0;
     direction = "";
     kong.style.left = position + "px";
-    kong.style.transform = "scaleX(1)";
 }
 
 
@@ -123,6 +148,35 @@ function getBoundingBox(element){
     left = rect.left -1;
     right = rect.left + rect.width -1;
     return {"left":left, "right":right};
+}
+
+//switch between modes (auto/manual) 
+function MoveControls(){
+
+    let kongbox = getBoundingBox(kong);
+    let bananbox = getBoundingBox(banana);
+
+    if(mode == "manual"){
+        // manual mode
+        if(direction == "left"){
+            moveLeft();
+        }
+        if(direction == "right"){
+            moveRight();
+        }
+        if(direction == ""){
+            stop();
+        }
+    }else if(mode == "auto"){
+        // auto mode
+        if(kongbox.left > bananbox.right ){
+            moveLeft();
+        }
+
+        if(kongbox.right < bananbox.left ){
+            moveRight();
+        }
+    }
 }
 
 
