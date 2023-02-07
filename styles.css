@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+/* 
+*{
+    border: 1px solid blue;
+} 
+*/
+#stage {
+    position: absolute;
+    width: 1440px;
+    height: 900px;
+    border: 1px solid black;
+    background-image: url("https://hokke.ict-lab.nl/images/angry_birds___poached_eggs_theme_i_background_by_yoshibowserfanatic_d6qa909-fullview.jpeg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#kong {
+    position: absolute;
+    top: 600px;
+    left: 400px;
+    width: 120px;
+    height: 120px;
+    background-image: url("https://hokke.ict-lab.nl/images/photofunky.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#banana {
+    position: absolute;
+    top: 650px;
+    left: 50px;
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    background-image: url("https://hokke.ict-lab.nl/images/Minion_pig_copy.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+#score {
+    width: 130px;
+    height: 50px;
+    float: left;
+    margin: 25px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 30px;
+    background-color: white;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+    line-height: 50px;
+}
+
+.bounce {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+ 
+    transform-origin: bottom;
+    animation-timing-function: ease;
+    animation-name: bounce-6;
+}
+
+@keyframes bounce-6 {
+    0%   { transform: scale(1,1)      translateY(0); }
+    10%  { transform: scale(1.1,.9)   translateY(0); }
+    30%  { transform: scale(.9,1.1)   translateY(-100px); }
+    50%  { transform: scale(1.05,.95) translateY(0); }
+    57%  { transform: scale(1,1)      translateY(-7px); }
+    64%  { transform: scale(1,1)      translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
+}
