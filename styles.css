@@ -80,7 +80,7 @@ h1 {
 
 .bar{
     z-index: -99;
-    width: 100%;
+    width: 48%;
     height: 85px;
     background-color: #00ff08;
     text-align: center;
@@ -93,11 +93,18 @@ h1 {
     color: #000000;
 }
 
+#bar10{
+    height: 83px;
+}
+
 #stage{
     overflow-y: hidden;
     overflow-x: hidden;
 }
 
+.hart{
+    width: 50px;
+}
 
 #HPwrapper{
     position: absolute;
