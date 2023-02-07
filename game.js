@@ -54,6 +54,7 @@ function gameEngine(){
         generateBanana();
         heathPoints--;
         banana.style.top = speed + "px";
+        updateHeathPoints();
     }
 
     if(heathPoints == 0){
@@ -179,5 +180,8 @@ function MoveControls(){
     }
 }
 
-
+function updateHeathPoints(){
+    let heathPointDiv = document.getElementById("bar" + (heathPoints + 1));
+    heathPointDiv.style.backgroundColor = "red";
+}
 init();
