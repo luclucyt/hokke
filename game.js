@@ -9,10 +9,14 @@ let banana = document.getElementById("banana");
 let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
+
 let speed = -5;
 let badscore = 0;
 
+
+
 let direction = "";
+
 
 function init(){
     document.addEventListener('keydown', controls);
