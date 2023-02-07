@@ -9,6 +9,8 @@ let banana = document.getElementById("banana");
 let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
+let speed = -10;
+let badscore = 0;
 
 let direction = "";
 
@@ -33,11 +35,27 @@ function gameEngine(){
         addScore()
     }
 
+<<<<<<< HEAD
     if(direction == "left"){
         moveLeft();
     }
     if(direction == "right"){
         moveRight();
+=======
+    if(speed < 650 ){
+        speed += 10
+        banana.style.top = speed + "px";
+    }
+    else{
+        badscore++;
+        speed = 0;
+        generateBanana();
+        console.log (badscore)
+    }
+
+    if (badscore == 10) {
+        window.alert ("game over")
+>>>>>>> a4cf1a447fb554bd2f0effc4a8b070bf0e801508
     }
 }
 
