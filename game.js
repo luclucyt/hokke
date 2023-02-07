@@ -10,7 +10,7 @@ let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
 let speed = -10;
-let heathPoints = 0;
+let heathPoints = 10;
 
 let direction = "";
 let mode = "manual";
@@ -58,6 +58,10 @@ function gameEngine(){
     }
 
     if(heathPoints == 0){
+        for(let i = 1; i < 10; i++){
+            let heathPointDiv = document.getElementById("bar" + i);
+            heathPointDiv.style.backgroundColor = "#00ff08ee";
+        }     
         alert("Game over");
         heathPoints = 10;
         score = 0;
