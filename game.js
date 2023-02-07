@@ -9,8 +9,11 @@ let banana = document.getElementById("banana");
 let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
+<<<<<<< HEAD
 
 let direction = "";
+=======
+>>>>>>> parent of a4cf1a4 (falling banana added & prototype game over)
 
 function init(){
     document.addEventListener('keydown', controls);
@@ -32,6 +35,7 @@ function gameEngine(){
         generateBanana();
         addScore()
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 <<<<<<< HEAD
@@ -56,6 +60,8 @@ function gameEngine(){
         window.alert ("game over")
 >>>>>>> a4cf1a447fb554bd2f0effc4a8b070bf0e801508
     }
+=======
+>>>>>>> parent of a4cf1a4 (falling banana added & prototype game over)
 =======
 >>>>>>> parent of a4cf1a4 (falling banana added & prototype game over)
 }
