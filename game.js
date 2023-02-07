@@ -1,7 +1,10 @@
 // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 // https://css-tricks.com/making-css-animations-feel-natural/
 
-// todo: game over toevoegen bij 10 punten
+//to:do: 1. zorg dat er een bar komt voor badscore (hp bar).
+//       2. maak een automatiche functie als je op spatie drukt.
+//       3. fix de vang functie voor de banaan/varken.
+//       4. maak custom art van hokke en alles zodat het een nog betere game is.
 
 console.log("start");
 let kong = document.getElementById("kong");
@@ -28,7 +31,7 @@ function gameEngine(){
     //  bounding box
     let kongbox = getBoundingBox(kong);
     let bananbox = getBoundingBox(banana);
-
+     // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
     if(kongbox.left < bananbox.right && kongbox.right > bananbox.left){
         console.log("hebbes");
         generateBanana();
