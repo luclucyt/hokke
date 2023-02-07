@@ -13,17 +13,17 @@ body {
     width: 1440px;
     height: 900px;
     border: 1px solid black;
-    background-image: url("https://hokke.ict-lab.nl/images/angry_birds___poached_eggs_theme_i_background_by_yoshibowserfanatic_d6qa909-fullview.jpeg");
+    background-image: url(images/hokke-achtergrond-final.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 #kong {
     position: absolute;
-    top: 600px;
+    top: 500px;
     left: 400px;
-    width: 120px;
-    height: 120px;
+    width: 240px;
+    height: 240px;
     background-image: url(images/hokke-1-final.png);
     background-repeat: no-repeat;
     background-size: contain;
