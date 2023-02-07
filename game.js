@@ -1,6 +1,4 @@
-//to:do: 1. zorg dat er een bar komt voor heathPoints (hp bar). 
-//       3. fix de vang functie voor de banaan/varken.
-//       4. maak custom art van hokke en alles zodat het een nog betere game is.d
+//3. fix de vang functie voor de banaan/varken.
 
 
 console.log("start");
