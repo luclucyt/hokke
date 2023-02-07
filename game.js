@@ -1,5 +1,4 @@
-//to:do: 1. zorg dat er een bar komt voor badscore (hp bar).
-
+//to:do: 1. zorg dat er een bar komt voor heathPoints (hp bar). 
 //       3. fix de vang functie voor de banaan/varken.
 //       4. maak custom art van hokke en alles zodat het een nog betere game is.
 
@@ -11,7 +10,7 @@ let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
 let speed = -10;
-let badscore = 0;
+let heathPoints = 0;
 
 let direction = "";
 let mode = "manual";
@@ -30,7 +29,8 @@ function gameEngine(){
     //  bounding box
     let kongbox = getBoundingBox(kong);
     let bananbox = getBoundingBox(banana);
-     // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
+     
+    // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
     if(kongbox.left < bananbox.right && kongbox.right > bananbox.left){
         console.log("hebbes");
         generateBanana();
@@ -52,13 +52,13 @@ function gameEngine(){
     else{
         speed = -10;
         generateBanana();
-        badscore++;
+        heathPoints--;
         banana.style.top = speed + "px";
     }
 
-    if(badscore == 10){
+    if(heathPoints == 0){
         alert("Game over");
-        badscore = 0;
+        heathPoints = 10;
         score = 0;
         scoreText.innerText = score;
     }
@@ -94,14 +94,14 @@ function controls(event) {
 
             score = 0;
             scoreText.innerText = score;
-            badscore = 0;
+            heathPoints = 10;
         } else{
             mode = "auto";
             console.log("auto");
 
             score = 0;
             scoreText.innerText = score;
-            badscore = 0;
+            heathPoints = 10;
         }
     }
 }
