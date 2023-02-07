@@ -24,7 +24,7 @@ body {
     left: 400px;
     width: 120px;
     height: 120px;
-    background-image: url("https://hokke.ict-lab.nl/images/photofunky.gif");
+    background-image: url(images/hokke-1-final.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
