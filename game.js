@@ -1,6 +1,6 @@
 //to:do: 1. zorg dat er een bar komt voor heathPoints (hp bar). 
 //       3. fix de vang functie voor de banaan/varken.
-//       4. maak custom art van hokke en alles zodat het een nog betere game is.
+//       4. maak custom art van hokke en alles zodat het een nog betere game is.d
 
 
 console.log("start");
@@ -71,6 +71,18 @@ function gameEngine(){
     if(mode == "auto"){
         MoveControls();
     }
+
+    //check if kong is out of bounds, if so teleport him to the other side
+    if(position < -150){
+        position = 1250;
+        kong.style.left = position + "px";
+    }
+    if(position > 1250){
+        position = -150;
+        kong.style.left = position + "px";
+    }
+
+
 }
 
 function controls(event) {
