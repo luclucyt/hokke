@@ -32,7 +32,7 @@ function gameEngine(){
     //  bounding box
     let kongbox = getBoundingBox(kong);
     let bananbox = getBoundingBox(banana);
-
+    // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
     if(kongbox.left < bananbox.right && kongbox.right > bananbox.left ){
         console.log("hebbes");
         generateBanana();
