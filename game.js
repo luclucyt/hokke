@@ -10,6 +10,8 @@ let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
 
+let direction = "";
+
 function init(){
     document.addEventListener('keydown', controls);
     kong.style.left = position + "px";
@@ -24,49 +26,63 @@ function gameEngine(){
     //  bounding box
     let kongbox = getBoundingBox(kong);
     let bananbox = getBoundingBox(banana);
-    
-    if(kongbox.left > bananbox.right ){
-        moveLeft();
-    }
 
-    if(kongbox.right < bananbox.left ){
-        moveRight();
-    }
-
-   if(kongbox.left < bananbox.right && kongbox.right > bananbox.left ){
+    if(kongbox.left < bananbox.right && kongbox.right > bananbox.left ){
         console.log("hebbes");
         generateBanana();
         addScore()
+    }
+
+    if(direction == "left"){
+        moveLeft();
+    }
+    if(direction == "right"){
+        moveRight();
     }
 }
 
 function controls(event) {
     let key = event.key;
     //todo op basis van keycode , links of rechts aanroepen
-    if(key == "a" || key == "ArrowLeft"){  
-      moveLeft();
+    if(key == "a" || key == "ArrowLeft" || direction == "left"){  
+        moveLeft();
     }
 
-    if(key == "d" || key == "ArrowRight"){
-      moveRight();
+    if(key == "d" || key == "ArrowRight" || direction == "right"){
+        moveRight();
     }
-  }
 
-  function moveLeft(){
-      position -= 10;
-      kong.style.left = position + "px";
-      kong.style.transform = "scaleX(-1)";
-  }
+    if(key == " " || key ==""){
+        stop();
+    }
+}
 
-  function moveRight(){
+function moveLeft(){
+    position -= 10;
+    kong.style.left = position + "px";
+    kong.style.transform = "scaleX(-1)";
+    direction = "left";
+}
+
+
+function moveRight(){
     position += 10;
     kong.style.left = position + "px";
     kong.style.transform = "scaleX(+1)";
+    direction = "right";
+}
+
+function stop(){
+    position += 0;
+    direction = "";
+    kong.style.left = position + "px";
+    kong.style.transform = "scaleX(1)";
 }
 
 
 function generateBanana(){
     banana.style.opacity = 1;
+    
     // banaan mag niet buiten de stage staan 1000px
     // maak er tientallen van met *10 
     let bananaSpawn = Math.floor(Math.random() * 130)*10 + "px";
