@@ -1,7 +1,3 @@
-// to:do : 1. vang functie fixen
-//         2. pauze knop maken
-
-
 console.log("start");
 let kong = document.getElementById("kong");
 let banana = document.getElementById("banana");
@@ -14,6 +10,8 @@ let heathPoints = 10;
 let direction = "";
 let mode = "manual";
 
+let pauze = true;
+
 function init(){
     document.addEventListener('keydown', controls);
     kong.style.left = position + "px";
@@ -24,61 +22,62 @@ function init(){
 }
 
 function gameEngine(){
-    
-    //  bounding box
-    let kongbox = getBoundingBox(kong);
-    let bananbox = getBoundingBox(banana);
-     
-    // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
-    if(kongbox.left < bananbox.right && kongbox.right > bananbox.left){
-        console.log("hebbes");
-        generateBanana();
-        addScore()
-        speed = -10;
-    }
+    if(pauze == false){
+        //  bounding box
+        let kongbox = getBoundingBox(kong);
+        let bananbox = getBoundingBox(banana);
+        
+        // maak hier onder de fuctie om de hoogte te pakkes shit ja cool
+        if(kongbox.left < bananbox.right && kongbox.right > bananbox.left && kongbox.top < bananbox.bottom && kongbox.bottom > bananbox.bottom){
+            console.log("hebbes");
+            generateBanana();
+            addScore()
+            speed = -10;
+        }
 
-    if(direction == "left"){
-        moveLeft();
-    }
-    if(direction == "right"){
-        moveRight();
-    }
+        if(direction == "left"){
+            moveLeft();
+        }
+        if(direction == "right"){
+            moveRight();
+        }
 
-    if(speed < 655){
-        banana.style.top = speed + "px";
-        speed += 5;
-    }
-    else{
-        speed = -10;
-        generateBanana();
-        heathPoints--;
-        banana.style.top = speed + "px";
-        updateHeathPoints();
-    }
+        if(speed < 655){
+            banana.style.top = speed + "px";
+            speed += 5;
+        }
+        else{
+            speed = -10;
+            generateBanana();
+            heathPoints--;
+            banana.style.top = speed + "px";
+            updateHeathPoints();
+        }
 
-    if(heathPoints == 0){
-        for(let i = 1; i < 10; i++){
-            let heathPointDiv = document.getElementById("bar" + i);
-            heathPointDiv.style.backgroundColor = "#00ff08ee";
-        }     
-        alert("Game over");
-        heathPoints = 10;
-        score = 0;
-        scoreText.innerText = score;
-    }
+        if(heathPoints == 0){
+            for(let i = 1; i < 10; i++){
+                let heathPointDiv = document.getElementById("bar" + i);
+                heathPointDiv.style.backgroundColor = "#00ff08ee";
+            }     
+            alert("Game over");
+            heathPoints = 10;
+            score = 0;
+            scoreText.innerText = score;
+        }
 
-    if(mode == "auto"){
-        MoveControls();
-    }
+        if(mode == "auto"){
+            MoveControls();
+        }
 
-    //check if kong is out of bounds, if so teleport him to the other side
-    if(position < -150){
-        position = 1250;
-        kong.style.left = position + "px";
-    }
-    if(position > 1250){
-        position = -150;
-        kong.style.left = position + "px";
+        //check if kong is out of bounds, if so teleport him to the other side
+        if(position < -150){
+            position = 1250;
+            kong.style.left = position + "px";
+        }
+        if(position > 1250){
+            position = -150;
+            kong.style.left = position + "px";
+        }
     }
 
 
@@ -120,21 +119,39 @@ function controls(event) {
             heathPoints = 10;
         }
     }
+
+    if(key == "p"){
+        if(pauze == false){
+            pauze = true;
+            
+        }else{
+            pauze = false;
+        }
+    }
+    else{
+        if(pauze == true){
+            pauze = false;
+        }
+    }
 }
 
 function moveLeft(){
-    position -= 10;
-    kong.style.left = position + "px";
-    kong.style.transform = "scaleX(-1)";
-    direction = "left";
+    if(pauze == false){
+        position -= 10;
+        kong.style.left = position + "px";
+        kong.style.transform = "scaleX(-1)";
+        direction = "left";
+    }
 }
 
 
 function moveRight(){
-    position += 10;
-    kong.style.left = position + "px";
-    kong.style.transform = "scaleX(+1)";
-    direction = "right";
+    if(pauze == false){
+        position += 10;
+        kong.style.left = position + "px";
+        kong.style.transform = "scaleX(+1)";
+        direction = "right";
+    }
 }
 
 function stop(){
@@ -161,11 +178,13 @@ function addScore(){
 // offset van 1px?
 function getBoundingBox(element){
     let rect = element.getBoundingClientRect();
-    left = rect.left -1;
-    right = rect.left + rect.width -1;
-    return {"left":left, "right":right};
+    let left = rect.left - 1;
+    let right = rect.left + rect.width - 1;
+    let top = rect.top;
+    let bottom = rect.top + rect.height - 1;
+    
+    return {"left":left, "right":right, "top":top, "bottom":bottom};
 }
-
 //switch between modes (auto/manual) 
 function MoveControls(){
 
@@ -185,11 +204,14 @@ function MoveControls(){
         }
     }else if(mode == "auto"){
         // auto mode
-        if(kongbox.left > bananbox.right ){
+        if(kongbox.left > bananbox.left && kongbox.right < bananbox.right){
+            console.log("stop");
+            stop();
+        }else if(kongbox.left > bananbox.right ){
+            console.log("links");
             moveLeft();
-        }
-
-        if(kongbox.right < bananbox.left ){
+        }else if(kongbox.right < bananbox.left ){
+            console.log("rechts");
             moveRight();
         }
     }
