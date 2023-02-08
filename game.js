@@ -69,6 +69,7 @@ function gameEngine(){
             heathPoints = 10;
             score = 0;
             scoreText.innerText = score;
+            }     
         }
 
         if(mode == "auto"){
@@ -87,7 +88,7 @@ function gameEngine(){
     }
 
 
-}
+
 
 function controls(event) {
     let key = event.key;
@@ -116,6 +117,7 @@ function controls(event) {
             score = 0;
             scoreText.innerText = score;
             heathPoints = 10;
+
         } else{
             mode = "auto";
             console.log("auto");
@@ -123,7 +125,12 @@ function controls(event) {
             score = 0;
             scoreText.innerText = score;
             heathPoints = 10;
+            for(let i = 1; i < 11; i++){
+                let heathPointDiv = document.getElementById("bar" + i);
+                heathPointDiv.style.backgroundColor = "#00ff08ee";
+            }
         }
+        
     }
 
     if(key == "p"){
