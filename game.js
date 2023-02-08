@@ -202,7 +202,7 @@ function generateBanana(){
     
     // banaan mag niet buiten de stage staan 1000px
     // maak er tientallen van met *10 
-    let bananaSpawn = Math.floor(Math.random() * 130)*10 + "px";
+    let bananaSpawn = Math.floor(Math.random() * 120)*10 + "px";
     banana.style.left = bananaSpawn;
 };
 
