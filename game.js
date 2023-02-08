@@ -76,7 +76,7 @@ function gameEngine(){
 
         //if heathpoints are 0, reset heathpoints and score
         if(heathPoints == 0){
-            for(let i = 1; i < 10; i++){
+            for(let i = 1; i < 11; i++){
                 let heathPointDiv = document.getElementById("bar" + i);
                 heathPointDiv.style.backgroundColor = "#00ff08ee";
             }     
