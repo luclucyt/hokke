@@ -135,6 +135,11 @@ function controls(event) {
             scoreText.innerText = score;
             heathPoints = 10;
 
+            for(let i = 1; i < 11; i++){
+                let heathPointDiv = document.getElementById("bar" + i);
+                heathPointDiv.style.backgroundColor = "#00ff08ee";
+            }
+
         } else{
             mode = "auto";
             console.log("auto");
