@@ -84,7 +84,7 @@ function gameEngine(){
             heathPoints = 10;
             score = 0;
             scoreText.innerText = score;
-            speed = -10;
+            }     
         }
 
         //if mode is auto, move kong automatically 
@@ -103,7 +103,8 @@ function gameEngine(){
         }
     }
 
-}
+
+
 
 //--------------------INPUT HANDLING--------------------\\
 function controls(event) {
@@ -133,6 +134,12 @@ function controls(event) {
             score = 0;
             scoreText.innerText = score;
             heathPoints = 10;
+
+            for(let i = 1; i < 11; i++){
+                let heathPointDiv = document.getElementById("bar" + i);
+                heathPointDiv.style.backgroundColor = "#00ff08ee";
+            }
+
         } else{
             mode = "auto";
             console.log("auto");
@@ -140,7 +147,12 @@ function controls(event) {
             score = 0;
             scoreText.innerText = score;
             heathPoints = 10;
+            for(let i = 1; i < 11; i++){
+                let heathPointDiv = document.getElementById("bar" + i);
+                heathPointDiv.style.backgroundColor = "#00ff08ee";
+            }
         }
+        
     }
 
     if(key == "p"){
@@ -190,7 +202,7 @@ function generateBanana(){
     
     // banaan mag niet buiten de stage staan 1000px
     // maak er tientallen van met *10 
-    let bananaSpawn = Math.floor(Math.random() * 130)*10 + "px";
+    let bananaSpawn = Math.floor(Math.random() * 120)*10 + "px";
     banana.style.left = bananaSpawn;
 };
 
