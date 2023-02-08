@@ -1,16 +1,16 @@
-// to:do : 1. vang functie fixen
-//         2. pauze knop maken
+// to:do :
 //         3. socials toevoegen aan pagina
 //         4. sound effects toevoegen
+//         1. dynamicse score toevoegen
 
-
-console.log("start");
+//--------------------VARIABLES--------------------\\
 let kong = document.getElementById("kong");
 let banana = document.getElementById("banana");
 let scoreText = document.getElementsByTagName("h1")[0];
 let position = 400;
 let score = 0;
 let speed = -10;
+let positionBanna = -10;
 let heathPoints = 10;
 
 let direction = "";
@@ -18,6 +18,7 @@ let mode = "manual";
 
 let pauze = true;
 
+//--------------------ONLOAD--------------------\\
 function init(){
     document.addEventListener('keydown', controls);
     kong.style.left = position + "px";
@@ -27,6 +28,7 @@ function init(){
     generateBanana();
 }
 
+//--------------------LOOP--------------------\\
 function gameEngine(){
     if(pauze == false){
         //  bounding box
@@ -38,7 +40,7 @@ function gameEngine(){
             console.log("hebbes");
             generateBanana();
             addScore()
-            speed = -10;
+            positionBanna = -10;
         }
 
         if(direction == "left"){
@@ -48,18 +50,31 @@ function gameEngine(){
             moveRight();
         }
 
-        if(speed < 655){
-            banana.style.top = speed + "px";
-            speed += 5;
+
+        //make the speed of the banana increase over time acroding to the score
+        if(score > 0 && score % 10 == 0){
+            speed -= 1;
+        }
+        //give the speed a cap
+        if(speed < -15){
+            speed = -15;
+        }
+
+
+        //move banana down until it hits the ground 
+        if(positionBanna < 655){
+            banana.style.top = positionBanna + "px";
+            positionBanna -= speed;
         }
         else{
-            speed = -10;
+            positionBanna = -10;
             generateBanana();
             heathPoints--;
-            banana.style.top = speed + "px";
+            banana.style.top = positionBanna + "px";
             updateHeathPoints();
         }
 
+        //if heathpoints are 0, reset heathpoints and score
         if(heathPoints == 0){
             for(let i = 1; i < 10; i++){
                 let heathPointDiv = document.getElementById("bar" + i);
@@ -72,6 +87,7 @@ function gameEngine(){
             }     
         }
 
+        //if mode is auto, move kong automatically 
         if(mode == "auto"){
             MoveControls();
         }
@@ -90,6 +106,7 @@ function gameEngine(){
 
 
 
+//--------------------INPUT HANDLING--------------------\\
 function controls(event) {
     let key = event.key;
     if(mode == "manual"){
@@ -148,6 +165,7 @@ function controls(event) {
     }
 }
 
+//--------------------MOVEMENT--------------------\\
 function moveLeft(){
     if(pauze == false){
         position -= 10;
@@ -156,7 +174,6 @@ function moveLeft(){
         direction = "left";
     }
 }
-
 
 function moveRight(){
     if(pauze == false){
@@ -174,6 +191,7 @@ function stop(){
 }
 
 
+
 function generateBanana(){
     banana.style.opacity = 1;
     
@@ -188,7 +206,7 @@ function addScore(){
     scoreText.innerText = score;
 }
 
-// offset van 1px?
+// DO NOT TOUCH THIS FUNCTION EVER!
 function getBoundingBox(element){
     let rect = element.getBoundingClientRect();
     let left = rect.left - 1;
@@ -198,9 +216,11 @@ function getBoundingBox(element){
     
     return {"left":left, "right":right, "top":top, "bottom":bottom};
 }
+
+
+
 //switch between modes (auto/manual) 
 function MoveControls(){
-
     let kongbox = getBoundingBox(kong);
     let bananbox = getBoundingBox(banana);
 
