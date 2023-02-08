@@ -84,27 +84,33 @@ function gameEngine(){
             heathPoints = 10;
             score = 0;
             scoreText.innerText = score;
-            }     
-        }
+        }     
+    }
 
-        //if mode is auto, move kong automatically 
-        if(mode == "auto"){
-            MoveControls();
-        }
+    //if mode is auto, move kong automatically 
+    if(mode == "auto"){
+        MoveControls();
+    }
 
-        //check if kong is out of bounds, if so teleport him to the other side
-        if(position < -150){
-            position = 1250;
-            kong.style.left = position + "px";
-        }
-        if(position > 1250){
-            position = -150;
-            kong.style.left = position + "px";
-        }
+    //check if kong is out of bounds, if so teleport him to the other side
+    if(position < -150){
+        position = 1250;
+        kong.style.left = position + "px";
+    }
+    if(position > 1250){
+        position = -150;
+        kong.style.left = position + "px";
     }
 
 
-
+    if(mode == "auto"){
+        heathPoints = 10;
+        for(let i = 1; i < 11; i++){
+            let heathPointDiv = document.getElementById("bar" + i);
+            heathPointDiv.style.backgroundColor = "#00ff08";
+        }
+    }
+}
 
 //--------------------INPUT HANDLING--------------------\\
 function controls(event) {
