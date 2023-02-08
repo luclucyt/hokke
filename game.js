@@ -111,11 +111,11 @@ function controls(event) {
     if(mode == "manual"){
         
         //todo op basis van keycode , links of rechts aanroepen
-        if(key == "a" || key == "ArrowLeft" || direction == "left"){  
+        if(key == "a" || key == "ArrowLeft" || key == "A" || direction == "left"){  
             moveLeft();
         }
 
-        if(key == "d" || key == "ArrowRight" || direction == "right"){
+        if(key == "d" || key == "ArrowRight" || key == "D" || direction == "right"){
             moveRight();
         }
 
@@ -161,7 +161,7 @@ function controls(event) {
 //--------------------MOVEMENT--------------------\\
 function moveLeft(){
     if(pauze == false){
-        position -= 10;
+        position -= 15;
         kong.style.left = position + "px";
         kong.style.transform = "scaleX(-1)";
         direction = "left";
@@ -170,7 +170,7 @@ function moveLeft(){
 
 function moveRight(){
     if(pauze == false){
-        position += 10;
+        position += 15;
         kong.style.left = position + "px";
         kong.style.transform = "scaleX(+1)";
         direction = "right";
@@ -199,7 +199,7 @@ function addScore(){
     scoreText.innerText = score;
 }
 
-// DO NOT TOUCH THIS FUNCTION EVER!
+// DO NOT TOUCH THIS FUNCTION EVER EVER EVER!
 function getBoundingBox(element){
     let rect = element.getBoundingClientRect();
     let left = rect.left - 1;
