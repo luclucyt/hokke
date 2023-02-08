@@ -1,5 +1,7 @@
 // to:do : 1. vang functie fixen
 //         2. pauze knop maken
+//         3. socials toevoegen aan pagina
+//         4. sound effects toevoegen
 
 
 console.log("start");
